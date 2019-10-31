@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import Foodlist from "./components/FoodList";
+import { getProducts } from "./actions/products";
+import { connect } from "react-redux";
 
 class App extends Component {
   constructor(props) {
@@ -8,6 +10,9 @@ class App extends Component {
     this.state = {
       cart: []
     };
+  }
+  componentDidMount() {
+    this.props.getProducts();
   }
 
   render() {
@@ -52,4 +57,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(
+  null,
+  { getProducts }
+)(App);
